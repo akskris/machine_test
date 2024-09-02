@@ -3,7 +3,38 @@ import os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
+def login(username, password):
+    # Initialize the WebDriver
+    driver = webdriver.Chrome()
+    driver.maximize_window()
 
+    # Set implicit wait for 10 seconds
+    driver.implicitly_wait(10)
+
+    # Navigate to the product page
+    driver.get("https://woocommerce-850415-2933260.cloudwaysapps.com/my-account")
+
+    # Wait for the page to load
+    time.sleep(5)
+
+    # Enter username
+    driver.find_element(By.ID, "username").send_keys(username)
+
+    # Enter password
+    driver.find_element(By.ID, "password").send_keys(password)
+
+    # Click submit
+    driver.find_element(By.CLASS_NAME, "woocommerce-button").click()
+
+    # Wait for the page to load
+    time.sleep(5)
+
+    # Take confirmation message
+    message = driver.find_element(By.CLASS_NAME, "woocommerce-MyAccount-content").text
+
+    driver.quit()
+
+    return message
 
 def test(phonenumber, borders):
     # Initialize the WebDriver
@@ -64,27 +95,27 @@ def test(phonenumber, borders):
 
     # Check whether the product is added to the cart successfully
     message = driver.find_element(By.XPATH, "//div[@class='woocommerce-notices-wrapper']").text
-    # if "has been added to your cart" in success_message:
-    #     print("Pass")
-    # else:
-    #     print("Fail")
 
     # Close the browser
     driver.quit()
     return message
 
-# Test case 1: Valid phone number and borders
+# Test case 1: Test Login
+print("Test case 1: Test Login")
+message = login("test_customer", "password")
+print("Validation Message: ", message)
+
+# Test case 2: Valid phone number and borders
 print("Test case 1: Valid phone number and borders")
 message = test("9556373890", "2")
 print("Validation Message: ", message)
 
-
-# Test case 2: Invalid phone number and valid borders
+# Test case 3: Invalid phone number and valid borders
 print("# Test case 2: Invalid phone number and valid borders")
 message = test("abcdef", "2")
 print("Validation Message: ", message)
 
-# Test case 3: Valid phone number and invalid borders
+# Test case 4: Valid phone number and invalid borders
 print("# Test case 3: Valid phone number and invalid borders")
 message = test("9556373890", "1")
 print("Validation Message: ", message)

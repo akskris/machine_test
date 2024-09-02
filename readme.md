@@ -27,9 +27,10 @@ This script automates the process of selecting product options on a WooCommerce 
 
 ### 7. **Test Cases**
 - The script includes three test cases:
-  - **Test Case 1:** Valid phone number with multiple borders.
-  - **Test Case 2:** Invalid phone number with multiple borders.
-  - **Test Case 3:** Valid phone number with a single border.
+  - **Test Case 1:** User login with valid credentials.
+  - **Test Case 2:** Valid phone number with multiple borders.
+  - **Test Case 3:** Invalid phone number with multiple borders.
+  - **Test Case 4:** Valid phone number with a single border.
 
 ### 8. **Teardown**
 - **Close Browser:** Finally, the script closes the browser.
